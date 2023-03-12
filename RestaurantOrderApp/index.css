@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Smythe&display=swap');
+
+
+html,body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Smythe', cursive;
+} 
+
+.container{
+    width: 600px;
+    margin: auto;
+    border: 1px solid green;
+}
+
+/* application sections*/
+
+.hero-section{
+    color: white;
+    background-image: url('images/burger.jpg');
+    background-size: cover;
+    position: relative;
+    background-position: center 65%;
+    padding: 0px;
+    height: 170px;
+}
+
+.order-application{
+    margin: 10px 50px; 
+}
+
+.menu-item{
+    
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #DEDEDE;
+}
+
+.menu-left{
+    display: flex;
+}
+.menu-information{
+    margin: auto 20px;
+}
+
+.menu-right{
+    margin: auto 0;
+}
+
+
+
+
+
+
+
+
+
+
+/* text styling */
+
+
+.hero-title {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 50px;
+    left: 50px; 
+}
+
+
+.hero-section h3 {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 90px;
+    left: 50px; 
+}
+
+.menu-icon{
+  
+    font-size: 40px;
+}
+
+.menu-name{
+    margin: 0;
+}
+
+.menu-ingredients{
+
+   color: #8B8B8B;
+   margin: 10px 0 0 0;
+   padding: 0;
+}
+
+.menu-price{
+    margin: 0;
+}
+
+
+/* buttons */
+
+
+
+.menu-button{
+    text-align: center;
+    border: 1px solid #DEDEDE;
+    color: #3C3C3C;
+    font-style: light;
+    font-family: Verdana;
+    font-weight: 200;
+    padding: 10 12;
+    font-size: 15px;
+    border-radius: 50px;
+    background: transparent;
+}
+
+/* utility */
+
+
+.hidden {
+    display:none;
+}

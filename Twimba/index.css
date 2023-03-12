@@ -12,6 +12,15 @@ h1{
     font-size: 20px;
 }
 
+p {
+    padding-bottom: 0;
+    margin-top: 0;
+}
+h3{
+    padding-bottom: 0;
+    margin-top: 0;
+}
+
 i{
     font-size: 15px;
     cursor: pointer;
