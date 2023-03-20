@@ -23,24 +23,21 @@ document.addEventListener('click', function(e){
 function addMenuItem(menuId){
 
     const targetMenuObj = menuArray.filter(function(item){
-    
         return item.id === parseInt(menuId)
     })[0]
+
+
 
     totalPrice += targetMenuObj.price
 
     orderArray.push(targetMenuObj)
 
-    
+
 
     render()
 }
 
-
-
-
-
-
+//
 //get orders
 
 function getOrderHtml() {
