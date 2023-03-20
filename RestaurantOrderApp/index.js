@@ -27,30 +27,51 @@ function addMenuItem(menuId){
         return item.id === parseInt(menuId)
     })[0]
 
+    totalPrice += targetMenuObj.price
+
     orderArray.push(targetMenuObj)
 
+    
 
     render()
 }
+
+
+
+
+
 
 //get orders
 
 function getOrderHtml() {
 
-
     console.log("array length", orderArray.length)
-
 
     let orderHtml = ""
 
     if(orderArray.length > 0){
+        //show order section
         orderSection.classList.remove("hidden");  
-        
 
-        orderArray.forEach(function(order){
-            
-            totalPrice += order.price
-            
+        const orderSummary =[]
+        
+        for(const order of orderArray){
+            let existingOrder = orderSummary.find(function(item){
+                 return item.id === order.id
+            })
+
+            if(existingOrder) {
+                existingOrder.quantity += 1;
+                existingOrder.price += order.price
+            } else{
+                orderSummary.push({...order, quantity: 1})
+            }
+        }
+
+        console.log("unique orders", orderSummary)
+
+
+        orderSummary.forEach(function(order){
 
 
             orderHtml +=
@@ -58,15 +79,14 @@ function getOrderHtml() {
                 <div class="order-item" id=${order.id}>
                     <div class="order-name"> 
                         <h2>
-                            ${order.name}
+                            ${order.quantity}x ${order.name}
                         </h2>
-                        <div class="order-remove">
-                        <p>
-                            remove
-                        </p>
+                        <div class="order-remove" id=${order.id}>
+                            <p>
+                                remove
+                            </p>
+                        </div>
                     </div>
-                    </div>
-
                     <div class="order-price">
                         <h3>
                             $${order.price}
