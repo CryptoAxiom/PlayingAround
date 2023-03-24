@@ -16,6 +16,12 @@ document.addEventListener('click', function(e){
     if (e.target.dataset.button){
         addMenuItem(e.target.dataset.button)
     }
+
+    if(e.target.dataset.remove){
+       
+        removeOrderItem(e.target.dataset.remove)
+        
+    }
 })
 
 //add menu item
@@ -26,23 +32,54 @@ function addMenuItem(menuId){
         return item.id === parseInt(menuId)
     })[0]
 
-
-
     totalPrice += targetMenuObj.price
 
     orderArray.push(targetMenuObj)
 
-
-
     render()
 }
 
-//
+
+function removeOrderItem(orderId){
+
+    console.log('click click I am id', typeof(orderId))
+
+    // const targetOrderObj = 
+
+
+    // if(orderArray.length < 1) {
+    //     orderSection.classList.add('flex')
+    // }
+
+    // render()
+
+    // if(orderArray.length > 0){
+    //     //show order section
+    //     orderSection.classList.remove("hidden");  
+
+    //     const orderSummary =[]
+        
+    //     for(const order of orderArray){
+    //         let existingOrder = orderSummary.find(function(item){
+    //              return item.id === order.id
+    //         })
+
+    //         if(existingOrder) {
+    //             existingOrder.quantity += 1;
+    //             existingOrder.price += order.price
+    //         } else{
+    //             orderSummary.push({...order, quantity: 1})
+    //         }
+    //     }
+    // }
+}
+
+
 //get orders
 
 function getOrderHtml() {
 
-    console.log("array length", orderArray.length)
+    // console.log("array length", orderArray.length)
 
     let orderHtml = ""
 
@@ -65,7 +102,7 @@ function getOrderHtml() {
             }
         }
 
-        console.log("unique orders", orderSummary)
+        // console.log("unique orders", orderSummary)
 
 
         orderSummary.forEach(function(order){
@@ -78,8 +115,8 @@ function getOrderHtml() {
                         <h2>
                             ${order.quantity}x ${order.name}
                         </h2>
-                        <div class="order-remove" id=${order.id}>
-                            <p>
+                        <div class="order-remove" id="${order.id}" >
+                            <p data-remove="${order.id}">
                                 remove
                             </p>
                         </div>
@@ -96,7 +133,6 @@ function getOrderHtml() {
     }   
     return orderHtml
 }
-
 
 
 //get the menu
