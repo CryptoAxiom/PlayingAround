@@ -2,11 +2,14 @@ import { menuArray } from './data.js'
 
 
 const orderSection = document.getElementById('summary-section')
+const totalPriceElement = document.querySelector('.total-price h3');
+
 //initiate array to store orders
-let orderArray = []
+const orderSummary =[]
 
 //initiate variable to store total order price
 let totalPrice = 0
+totalPriceElement.innerHTML = `$${totalPrice}`
 
 
 //event listener
@@ -27,68 +30,21 @@ document.addEventListener('click', function(e){
 //add menu item
 
 function addMenuItem(menuId){
+    let orderArray = []
 
     const targetMenuObj = menuArray.filter(function(item){
         return item.id === parseInt(menuId)
     })[0]
 
     totalPrice += targetMenuObj.price
-
+    
     orderArray.push(targetMenuObj)
 
-    render()
-}
-
-
-function removeOrderItem(orderId){
-
-    console.log('click click I am id', typeof(orderId))
-
-    // const targetOrderObj = 
-
-
-    // if(orderArray.length < 1) {
-    //     orderSection.classList.add('flex')
-    // }
-
-    // render()
-
-    // if(orderArray.length > 0){
-    //     //show order section
-    //     orderSection.classList.remove("hidden");  
-
-    //     const orderSummary =[]
-        
-    //     for(const order of orderArray){
-    //         let existingOrder = orderSummary.find(function(item){
-    //              return item.id === order.id
-    //         })
-
-    //         if(existingOrder) {
-    //             existingOrder.quantity += 1;
-    //             existingOrder.price += order.price
-    //         } else{
-    //             orderSummary.push({...order, quantity: 1})
-    //         }
-    //     }
-    // }
-}
-
-
-//get orders
-
-function getOrderHtml() {
-
-    // console.log("array length", orderArray.length)
-
-    let orderHtml = ""
 
     if(orderArray.length > 0){
         //show order section
         orderSection.classList.remove("hidden");  
 
-        const orderSummary =[]
-        
         for(const order of orderArray){
             let existingOrder = orderSummary.find(function(item){
                  return item.id === order.id
@@ -101,9 +57,89 @@ function getOrderHtml() {
                 orderSummary.push({...order, quantity: 1})
             }
         }
+    }
+    render()
+}
 
-        // console.log("unique orders", orderSummary)
 
+function removeOrderItem(orderId){
+    
+    if(orderSummary.length < 1) {
+        orderSection.classList.add('flex')
+    }
+
+    const targeOrderObj = orderSummary.filter(function(item){
+        return item.id === parseInt(orderId)
+    })[0]
+
+    console.log("targetobject", targeOrderObj)
+
+    render()
+    console.log("price total", totalPrice)
+
+
+    
+
+    // for (const order of orderSummary){
+    //     let removeOrder = orderSummary.find(function(remove)){
+
+    //         console.log("target object id", targeOrderObj.id)
+    //         console.log("order id", order.id)
+    //         console.log("from click", orderId)
+    //         return  remove.id === order.
+    //     }
+
+        // console.log("order to be removed", removeOrder)
+        
+
+        // if(removeOrder) {
+        //     // console.log(removeOrder)
+
+        //     console.log(removeOrder.quantity)
+        //     if (removeOrder.quantity >= 2) {
+        //         let itemPrice = removeOrder.price / removeOrder.quantity
+        //         console.log("order quality more ")
+        //         removeOrder.quantity -= 1
+        //         removeOrder.price -= itemPrice
+        //         totalPrice -= itemPrice
+        //         removeOrder = removeOrder
+
+        //     }
+        //     else if (removeOrder.quantity <= 1) {
+        //         orderSummary.pop(removeOrder)
+        //         totalPrice -= removeOrder.price
+        //     }
+        // }
+
+        // console.log("order to remove", removeOrder)
+
+        // if (removeOrder[0].quantity > 1) {
+
+        //     console.log(removeOrder[0])
+        //     console.log("type", typeof(removeOrder[0].quantity))
+
+        //     
+        //     removeOrder[0].quantity -= 1
+        //     
+        //     totalPrice -= itemPrice
+        // }
+        // else if (removeOrder[0].quantity < 1) {
+        //     orderSummary.pop(targeOrderObj)
+        //     totalPrice -= targeOrderObj.price
+        // }
+
+    }
+
+
+
+
+
+
+//get orders
+
+function getOrderHtml() {
+
+    let orderHtml = ""
 
         orderSummary.forEach(function(order){
 
@@ -129,10 +165,10 @@ function getOrderHtml() {
                 </div>
             `
             })
-
-    }   
     return orderHtml
-}
+    }   
+    
+
 
 
 //get the menu
@@ -184,6 +220,8 @@ function getMenuHtml(){
 function render(){
     document.getElementById('order-section').innerHTML = getMenuHtml()
     document.getElementById('summary-order').innerHTML = getOrderHtml()
+    document.querySelector('.total-price h3').innerHTML = `$${totalPrice}`
+
 }
 
 render()
