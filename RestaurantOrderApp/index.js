@@ -17,7 +17,7 @@ totalPriceElement.innerHTML = `$${totalPrice}`
 document.addEventListener('click', function(e){
 
     if (e.target.dataset.button){
-        addMenuItem(e.target.dataset.button)
+        addOrderItem(e.target.dataset.button)
     }
 
     if(e.target.dataset.remove){
@@ -27,9 +27,9 @@ document.addEventListener('click', function(e){
     }
 })
 
-//add menu item
+//add order from menu
 
-function addMenuItem(menuId){
+function addOrderItem(menuId){
     let orderArray = []
 
     const targetMenuObj = menuArray.filter(function(item){
@@ -61,6 +61,7 @@ function addMenuItem(menuId){
     render()
 }
 
+//remove order
 
 function removeOrderItem(orderId){
     
@@ -68,67 +69,31 @@ function removeOrderItem(orderId){
         orderSection.classList.add('flex')
     }
 
-    const targeOrderObj = orderSummary.filter(function(item){
+    const targeOrderObj = orderSummary.findIndex(function(item){
         return item.id === parseInt(orderId)
-    })[0]
+    })
+    
+    let removeOrder = orderSummary[targeOrderObj]
+    let itemPrice = removeOrder.price / removeOrder.quantity
 
-    console.log("targetobject", targeOrderObj)
+    console.log("quanitty", orderSummary[targeOrderObj].quantity)
+
+    if (removeOrder.quantity <= 1) {
+        totalPrice -= removeOrder.price
+        orderSection.classList.add('flex')
+        orderSummary.splice(targeOrderObj,1)
+        
+    }
+
+    else{
+        removeOrder.quantity -= 1
+        removeOrder.price -= itemPrice
+        totalPrice -= itemPrice
+    }
 
     render()
-    console.log("price total", totalPrice)
 
-
-    
-
-    // for (const order of orderSummary){
-    //     let removeOrder = orderSummary.find(function(remove)){
-
-    //         console.log("target object id", targeOrderObj.id)
-    //         console.log("order id", order.id)
-    //         console.log("from click", orderId)
-    //         return  remove.id === order.
-    //     }
-
-        // console.log("order to be removed", removeOrder)
-        
-
-        // if(removeOrder) {
-        //     // console.log(removeOrder)
-
-        //     console.log(removeOrder.quantity)
-        //     if (removeOrder.quantity >= 2) {
-        //         let itemPrice = removeOrder.price / removeOrder.quantity
-        //         console.log("order quality more ")
-        //         removeOrder.quantity -= 1
-        //         removeOrder.price -= itemPrice
-        //         totalPrice -= itemPrice
-        //         removeOrder = removeOrder
-
-        //     }
-        //     else if (removeOrder.quantity <= 1) {
-        //         orderSummary.pop(removeOrder)
-        //         totalPrice -= removeOrder.price
-        //     }
-        // }
-
-        // console.log("order to remove", removeOrder)
-
-        // if (removeOrder[0].quantity > 1) {
-
-        //     console.log(removeOrder[0])
-        //     console.log("type", typeof(removeOrder[0].quantity))
-
-        //     
-        //     removeOrder[0].quantity -= 1
-        //     
-        //     totalPrice -= itemPrice
-        // }
-        // else if (removeOrder[0].quantity < 1) {
-        //     orderSummary.pop(targeOrderObj)
-        //     totalPrice -= targeOrderObj.price
-        // }
-
-    }
+}
 
 
 
@@ -221,7 +186,6 @@ function render(){
     document.getElementById('order-section').innerHTML = getMenuHtml()
     document.getElementById('summary-order').innerHTML = getOrderHtml()
     document.querySelector('.total-price h3').innerHTML = `$${totalPrice}`
-
 }
 
 render()
