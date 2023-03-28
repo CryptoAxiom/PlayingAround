@@ -32,16 +32,20 @@
                             </div>
                     </div>
                     <div>
-                        <button class="order-button"> Complete Order</button>
+                        <button class="order-button" id="order-button" data-order="order">Complete Order</button>
                     </div>
                 </div>
 
-                <modal class="hidden">
-                    <form>
+                <modal id="payment-details" class="flex">
+                    <form id="customer-details">
                         <h2>Enter card details</h2>
-                        
+                        <input type="text" id="name" name="name" value="Enter your name">
+                        <input type="text" id="name" name="name" value="Enter card number">
+                        <input type="text" id="cvv" name="cvv" value="Enter CVV">
                     </form>
                 </modal>
+
+
             </main>
 
         </section>

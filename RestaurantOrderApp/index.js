@@ -3,12 +3,14 @@ import { menuArray } from './data.js'
 
 const orderSection = document.getElementById('summary-section')
 const totalPriceElement = document.querySelector('.total-price h3');
+const orderButton = document.getElementById('order-button')
 
 //initiate array to store orders
 const orderSummary =[]
 
 //initiate variable to store total order price
 let totalPrice = 0
+
 
 
 //event listener
@@ -22,6 +24,11 @@ document.addEventListener('click', function(e){
        
         removeOrderItem(e.target.dataset.remove)
     }
+
+    if(e.target.dataset.order){
+        customerDetails()
+    }
+    
 
 
 })
@@ -62,8 +69,8 @@ function addOrderItem(menuId){
 
 //remove order
 
-function removeOrderItem(orderId){
-    
+function removeOrderItem(orderId){   
+
     if(orderSummary.length < 1) {
         orderSection.classList.add('flex')
     }
@@ -75,13 +82,10 @@ function removeOrderItem(orderId){
     let removeOrder = orderSummary[targeOrderObj]
     let itemPrice = removeOrder.price / removeOrder.quantity
 
-    console.log("quanitty", orderSummary[targeOrderObj].quantity)
-
     if (removeOrder.quantity <= 1) {
         totalPrice -= removeOrder.price
         orderSection.classList.add('flex')
         orderSummary.splice(targeOrderObj,1)
-        
     }
 
     else{
@@ -90,11 +94,23 @@ function removeOrderItem(orderId){
         totalPrice -= itemPrice
     }
 
+
     render()
 
 }
 
 
+
+
+
+function customerDetails() {
+
+    if(totalPrice){
+
+        
+    }
+
+}
 
 
 

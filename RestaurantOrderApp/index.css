@@ -162,6 +162,15 @@ html,body {
     text-align: center;
 }
 
+.active-button {
+    background-color: #16DB99;
+}
+
+.inactive-button{
+    background-color:#85EFCC;
+}
+
+
 
 /* utility */
 
