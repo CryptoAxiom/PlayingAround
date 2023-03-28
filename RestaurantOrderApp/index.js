@@ -9,22 +9,21 @@ const orderSummary =[]
 
 //initiate variable to store total order price
 let totalPrice = 0
-totalPriceElement.innerHTML = `$${totalPrice}`
 
 
 //event listener
-
 document.addEventListener('click', function(e){
 
-    if (e.target.dataset.button){
-        addOrderItem(e.target.dataset.button)
+    if (e.target.dataset.menuButton){
+        addOrderItem(e.target.dataset.menuButton)
     }
 
     if(e.target.dataset.remove){
        
         removeOrderItem(e.target.dataset.remove)
-        
     }
+
+
 })
 
 //add order from menu
@@ -170,7 +169,7 @@ function getMenuHtml(){
             <div class="menu-right">
                 <button 
                     class="menu-button"
-                    data-button="${menuItem.id}"
+                    data-menu-button="${menuItem.id}"
                 >+</button>
             </div>
         </div>
