@@ -4,6 +4,7 @@ import { menuArray } from './data.js'
 const orderSection = document.getElementById('summary-section')
 const totalPriceElement = document.querySelector('.total-price h3');
 const orderButton = document.getElementById('order-button')
+const checkoutModal = document.getElementById('checkout-modal')
 
 //initiate array to store orders
 const orderSummary =[]
@@ -106,8 +107,9 @@ function removeOrderItem(orderId){
 function customerDetails() {
 
     if(totalPrice){
+        console.log("i get clicked")
+        checkoutModal.style.display = 'block';
 
-        
     }
 
 }
