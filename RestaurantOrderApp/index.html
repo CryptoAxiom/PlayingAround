@@ -39,9 +39,9 @@
                 <div class="checkout-modal" id="checkout-modal">
                     <h2>Enter card details</h2>
                     <form class="checkout-form" id="checkout-form">
-                        <input type="text" id="name" name="name" value="Enter your name" class="field-form" required>
-                        <input type="text" id="card" name="card" value="Enter card number" class="field-form" required>
-                        <input type="text" id="cvv" name="cvv" value="Enter CVV" class="field-form" required>
+                        <input type="text" id="name" name="name"  placeholder="Enter your name" class="field-form" required>
+                        <input type="number" id="card" name="card"  placeholder="Enter card number" class="field-form" max="0" max="9999999999999999" step="1" required>
+                        <input type="number" id="cvv" name="cvv"  placeholder="Enter CVV" class="field-form" max="3" required>
                         <button type="button" class="pay-button">Pay</button>
                     </form>
                 <div>

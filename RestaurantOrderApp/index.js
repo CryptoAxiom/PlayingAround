@@ -1,10 +1,12 @@
 import { menuArray } from './data.js'
 
-
+//get elements from page
 const orderSection = document.getElementById('summary-section')
 const totalPriceElement = document.querySelector('.total-price h3');
 const orderButton = document.getElementById('order-button')
 const checkoutModal = document.getElementById('checkout-modal')
+const cardDetail = document.getElementById('card')
+const cvv = document.getElementById('cvv')
 
 //initiate array to store orders
 const orderSummary =[]
@@ -13,8 +15,19 @@ const orderSummary =[]
 let totalPrice = 0
 
 
+//event listener inputs
+document.addEventListener('input', function(){
+    if(cardDetail.value.length > 16) {
+        cardDetail.value = cardDetail.value.slice(0,16)
+    }
 
-//event listener
+    if (cvv.value.length > 3) {
+        cvv.value = cvv.value.slice(0,3)
+    }
+
+})
+
+//event listener clicks
 document.addEventListener('click', function(e){
 
     if (e.target.dataset.menuButton){
@@ -113,7 +126,6 @@ function customerDetails() {
     }
 
 }
-
 
 
 
