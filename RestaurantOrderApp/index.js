@@ -1,3 +1,4 @@
+//import data
 import { menuArray } from './data.js'
 
 //get elements from page
@@ -5,8 +6,10 @@ const orderSection = document.getElementById('summary-section')
 const totalPriceElement = document.querySelector('.total-price h3');
 const orderButton = document.getElementById('order-button')
 const checkoutModal = document.getElementById('checkout-modal')
-const cardDetail = document.getElementById('card')
-const cvv = document.getElementById('cvv')
+const cardDetail = document.getElementById('customer-card')
+const cvv = document.getElementById('customer-cvv')
+const customerName = document.getElementById('customer-name')
+
 
 //initiate array to store orders
 const orderSummary =[]
@@ -42,8 +45,11 @@ document.addEventListener('click', function(e){
     if(e.target.dataset.order){
         customerDetails()
     }
-    
 
+    if(e.target.dataset.pay) {
+        payOrder()
+    }
+    
 
 })
 
@@ -108,26 +114,44 @@ function removeOrderItem(orderId){
         totalPrice -= itemPrice
     }
 
-
     render()
 
 }
 
-
-
-
+// get modal
 
 function customerDetails() {
-
     if(totalPrice){
-        console.log("i get clicked")
+        //show modal
         checkoutModal.style.display = 'block';
-
+    }
+    else{
+        alert('Please add at least one item to make the order')
     }
 
 }
 
 
+// execute payment
+
+function payOrder() {
+
+    if(customerName.value !== "" || cardDetail.value !== "" || cvv.value !== "" ) {
+        checkoutModal.style.display = 'none';
+
+        let filledName = customerName.value
+
+        orderSection.innerHTML = `
+        <div class="order-complete">
+            <h1>Thanks, ${filledName}! Your order is on it's way!</h1>
+        </div>
+        `  
+    }
+    else {
+        alert('Please fill all fields as they are required information')
+
+    }
+}
 
 //get orders
 
@@ -136,7 +160,6 @@ function getOrderHtml() {
     let orderHtml = ""
 
         orderSummary.forEach(function(order){
-
 
             orderHtml +=
             `
@@ -162,8 +185,6 @@ function getOrderHtml() {
     return orderHtml
     }   
     
-
-
 
 //get the menu
 
